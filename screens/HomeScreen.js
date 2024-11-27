@@ -42,7 +42,9 @@ export default function HomeScreen({ route, navigation }) {
       </View>
 
       <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}
+          onPress={() => navigation.navigate ('Conceitos')}
+        >
           <MaterialIcons name="school" size={40} color="#004B8D" />
           <Text style={styles.buttonText}>Conceitos</Text>
         </TouchableOpacity>
