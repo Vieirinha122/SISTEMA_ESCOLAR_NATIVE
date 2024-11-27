@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "SISTEMA_ESCOLAR_NATIVE",
-    "slug": "SISTEMA_ESCOLAR_NATIVE",
+    "slug": "sistema-escolar-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.vieira_ads.sistemaescolarmobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4f02de16-3522-4560-8cd3-630357e4ff6d"
+      }
+    },
+    "owner": "vieira_ads"
   }
 }
