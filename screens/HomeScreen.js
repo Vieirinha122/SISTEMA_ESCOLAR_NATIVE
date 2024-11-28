@@ -71,7 +71,7 @@ export default function HomeScreen({ route, navigation }) {
           <Text style={styles.buttonText}>Contatos</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Contatos')}
+          onPress={() => navigation.navigate ('Pagamentos')}
         >
           <MaterialIcons name="paid" size={40} color="#3C7800" />
           <Text style={styles.buttonText}>Financeiro</Text>
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
     borderRadius: 10,
-    paddingVertical: 20,
-    paddingHorizontal: 30,
+    paddingVertical: 15,
+    paddingHorizontal: 25,
     margin: 10,
     alignItems: 'center',
     width: '40%',
