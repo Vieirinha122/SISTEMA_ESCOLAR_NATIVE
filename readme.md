@@ -2,7 +2,7 @@
 
 Bem-vindo ao **Sistema Escolar**! Este é um aplicativo desenvolvido em **React Native** que permite que os alunos acessem suas informações acadêmicas, como horários, conceitos, avisos e contatos de forma rápida e fácil. Essa é a versão Mobile de um projeto que já existe a versão Web. 
 
-Link do Projeto Web: [text](https://github.com/Vieirinha122/SISTEMA_ESCOLAR)
+Link do Projeto Web: [Sistema escolar Web](https://github.com/Vieirinha122/SISTEMA_ESCOLAR)
 
 ## 🚀 Tecnologias Utilizadas
 
