@@ -1,152 +1,172 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import axios from 'axios';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
-export default function HomeScreen({ route, navigation }) {
-  const { aluno } = route.params;
-  const [nomeTurma, setNomeTurma] = useState('');
-
-
-  const fetchTurma = async (idTurma) => {
-    try {
-      console.log("Fetching turma with ID:", idTurma);
-      const response = await axios.get(`https://sistema-escolar-two.vercel.app/api/turmas/${idTurma}`);
-      setNomeTurma(response.data.nome); 
-      console.log("Nome da turma:", response.data.nome); 
-    } catch (error) {
-      console.error('Erro ao buscar nome da turma:', error);
-    }
-  };
-
-
-  useEffect(() => {
-
-    if (aluno && Array.isArray(aluno.turma) && aluno.turma.length > 0) {
-      fetchTurma(aluno.turma[0]); 
-    } else {
-      console.log("ID da turma não encontrado.");
-    }
-  }, [aluno]);
-
+const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-       <Text style={styles.welcomeText}>Bem vindo(a)!</Text>
-      <View style={styles.studentCard}>
-        <MaterialIcons name="person" size={50} color="#FFFFFF" />
-        <View style={styles.textContainer}>
-        <Text style={styles.studentText}>ALUNO: {aluno.nome}</Text>
-        <Text style={styles.studentText}>{aluno.matricula} - Ano: 2024</Text>
-        <Text style={styles.studentText}>{nomeTurma ? `${nomeTurma} - ${aluno.turno}` : 'Carregando turma...'}</Text>
+      {/* Cabeçalho */}
+      <View style={styles.header}>
+        <FontAwesome5 name="user-circle" size={40} color="#fff" />
+        <View style={styles.userInfo}>
+          <Text style={styles.welcomeText}>Bem vindo(a)!</Text>
+          <Text style={styles.userDetails}>
+            Aluno(a): Sabrina Vidal{'\n'}1234 - Ano: 2024{'\n'}Turma ADS - Manhã
+          </Text>
         </View>
       </View>
 
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Conceitos')}
-        >
-          <MaterialIcons name="school" size={40} color="#004B8D" />
-          <Text style={styles.buttonText}>Conceitos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Avisos')}
-        >
-          <MaterialIcons name="warning" size={40} color="#E1A370" />
-          <Text style={styles.buttonText}>Avisos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Image source={require('../assets/Geekie_One.png')} style={styles.logoGeekie} />
-          <Text style={styles.buttonText}>GeekieOne</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Horarios')}
-        >
-          <MaterialIcons name="calendar-month" size={40} color="#004B8D" />
-          <Text style={styles.buttonText}>Horários</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Contatos')}
-        >
-          <MaterialIcons name="phone" size={40} color="#004B8D" />
-          <Text style={styles.buttonText}>Contatos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}
-          onPress={() => navigation.navigate ('Pagamentos')}
-        >
-          <MaterialIcons name="paid" size={40} color="#3C7800" />
-          <Text style={styles.buttonText}>Financeiro</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-          <MaterialIcons name="door-back" size={40} color="#004B8D" />
-          <Text style={styles.buttonText}>Sair</Text>
-        </TouchableOpacity>
+      {/* Menu */}
+      <View style={styles.menu}>
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('Conceitos')}
+          >
+            <FontAwesome5 name="graduation-cap" size={30} color="#021F39" />
+            <Text style={styles.optionText}>Conceitos</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('Avisos')}
+          >
+            <MaterialIcons name="warning" size={30} color="#ff9900" />
+            <Text style={styles.optionText}>Avisos</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('GeekieOne')}
+          >
+            <Image source={require('../assets/Geekie_One.png')} style={styles.logo}/>
+            <Text style={styles.optionText}>GeekieOne</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('Contatos')}
+          >
+            <FontAwesome5 name="phone" size={30} color="#003366" />
+            <Text style={styles.optionText}>Contatos</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.row}>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('Horário')}
+          >
+            <FontAwesome5 name="calendar-alt" size={30} color="#021F39" />
+            <Text style={styles.optionText}>Horário</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.option}
+            onPress={() => navigation.navigate('Financeiro')}
+          >
+            <FontAwesome5 name="dollar-sign" size={30} color="#28a745" />
+            <Text style={styles.optionText}>Financeiro</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      <View style={styles.logoContainer}>
-        <Image source={require('../assets/Logo_senac.png')} style={styles.logo} />
+      {/* Botão Sair */}
+      <TouchableOpacity
+        style={styles.logoutButton}
+        onPress={() => navigation.replace('Login')}
+      >
+        <MaterialIcons name="logout" size={24} color="#fff" />
+        <Text style={styles.logoutText}>Sair</Text>
+      </TouchableOpacity>
+
+      {/* Rodapé */}
+      <View style={styles.footer}>
+      <Image source={require('../assets/Logo_senac.png')}/>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#021F39',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 20,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 20,
+    marginLeft: 150,
+    marginTop: 20,
+    width: '100%',
+  },
+  userInfo: {
+    marginLeft: 15,
   },
   welcomeText: {
-    fontSize: 22,
-    color: "#FFFFFF",
-    fontWeight: "bold",
-    marginTop: 40,
-  },
-  studentCard: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  textContainer: {
-    marginLeft: 10,
-  },
-  studentText: {
-    fontSize: 16,
-    color: "#FFFFFF",
-    marginBottom: 5,
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    width: '80%',
-  },
-  button: {
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 15,
-    paddingHorizontal: 25,
-    margin: 10,
-    alignItems: 'center',
-    width: '40%',
-  },
-  buttonText: {
-    color: '#1A73BA',
-    fontSize: 15,
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  logoContainer: {
+  userDetails: {
+    color: '#fff',
+    fontSize: 14,
+    marginTop: 5,
+  },
+  menu: {
+    marginTop: 20,
+    width: '90%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  option: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    marginHorizontal: 20,
+  },
+  optionText: {
+    color: '#003366',
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 80,
+    backgroundColor: '#828587',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  logoutText: {
+    color: '#fff',
+    fontSize: 16,
+    marginLeft: 10,
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20,
     alignItems: 'center',
   },
-  logo: {
-    width: 120,
-    height: 70,
-    resizeMode: 'contain',
-    alignItems: 'center'
+  footerText: {
+    color: '#fff',
+    fontSize: 16,
   },
-  logoGeekie: {
-    width: 70,
-    height: 40,
-    resizeMode: 'contain',
+  logo: {
+    width: 45,
+    height: 45,
+    objectFit: 'contain',
   }
 });
+
+export default HomeScreen;

@@ -13,10 +13,12 @@ export default function LoginScreen({ navigation }) {
         matricula: matricula,
         senha: senha,
       });
-
+  
       if (response.data.success) {
-        const aluno = response.data.aluno; // Acesse os dados do aluno da resposta
-        navigation.navigate('Home', { aluno });
+        const aluno = response.data.aluno; // Dados do aluno recebidos da resposta
+        console.log('Aluno recebido no login:', aluno); // Verifique os dados
+        // Passando o aluno como parâmetro para a tela Home
+        navigation.replace('Drawer', { aluno });
       } else {
         Alert.alert('Erro', response.data.message || 'Matrícula ou senha incorreta');
       }
@@ -78,10 +80,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 120, 
+    width: 120,
     height: 90,
-    marginBottom: 30, 
-    objectFit: 'contain'
+    marginBottom: 30,
+    objectFit: 'contain',
   },
   label: {
     alignSelf: 'flex-start',

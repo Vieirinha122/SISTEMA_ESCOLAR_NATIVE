@@ -123,14 +123,14 @@ export default function HorarioScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0A284B",
+    backgroundColor: "#021F39",
     paddingHorizontal: 20,
-    paddingTop: 50,
+    paddingTop: 10,
   },
   title: {
     fontSize: 24,
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: 30,
     fontWeight: "bold",
     color: "#FFFFFF",
   },
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
   schedule: {
     backgroundColor: "#F0F0F0",
     marginTop: 10,
+    marginBottom: 20,
     padding: 10,
     borderRadius: 8,
     borderWidth: 1,
