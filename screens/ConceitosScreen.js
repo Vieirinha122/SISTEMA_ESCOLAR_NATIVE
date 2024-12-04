@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
   tableCell: {
     flex: 1,
     textAlign: 'center',
-    fontSize: 14,
+    fontSize: 12,
     color: '#021F39',
     fontWeight: '500',
   },
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   aprovado: {
     color: 'green',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 12,
   },
   reprovado: {
     color: 'red',

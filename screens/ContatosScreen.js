@@ -22,7 +22,7 @@ export default function ContatosScreen() {
         </View>
         <View style={styles.contactItem}>
           <Text style={styles.title}>Secretaria</Text>
-          <Text style={styles.phone}>(81) 0000-0000</Text>
+          <Text style={styles.phone}>(81) 4002-8922</Text>
         </View>
       </View>
       <View style={styles.logoContainer}>
@@ -35,7 +35,7 @@ export default function ContatosScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#00224D", // Cor azul-escuro do fundo
+    backgroundColor: "#021F39", 
     padding: 16,
     alignItems: "center",
   },
@@ -43,12 +43,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 24,
     fontWeight: "bold",
-    marginTop: 70,
-    marginBottom: 200,
+    marginBottom: 20,
   },
   card: {
     backgroundColor: "white",
     borderRadius: 8,
+    marginTop: 120,
     padding: 16,
     width: "90%",
     shadowColor: "#000",
